@@ -10,7 +10,9 @@ interface GetMeProvider {
 }
 
 export const GetMeProvider: FC<GetMeProvider> = ({ children, query }) => {
-  const { data, loading } = useQuery(query.documentNode);
+  const { data, loading } = useQuery(query.documentNode, {
+    notifyOnNetworkStatusChange: true,
+  });
 
   const me = data?.me || null;
 

@@ -1,9 +1,10 @@
 import { FormikHelpers } from "formik";
-import { Account, User } from "./generated";
+import { Account, User, Media } from "./generated";
 import { DocumentNode, ApolloError } from "@apollo/client";
 
 export type AccountBase = DeepPartial<Account>;
 export type UserBase = DeepPartial<User>;
+export type MediaBase = DeepPartial<Media>;
 
 export type DeepPartial<T> = T extends object
   ? {
@@ -23,9 +24,8 @@ export interface MutationBase<
   documentNode: DocumentNode;
   variables?: T;
   refetchQueries?: { query: DocumentNode }[];
-  //TODO: Can not return "account"
   onCompleted: (
-    data: { account: ReturnType; token: string },
+    data: ReturnType,
     helpers: FormikHelpers<T>,
     reset: () => void
   ) => void;

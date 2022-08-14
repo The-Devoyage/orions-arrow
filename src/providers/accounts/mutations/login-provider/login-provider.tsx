@@ -7,7 +7,7 @@ import { Context } from "../../../..";
 
 interface LoginAccountProviderProps<Account extends AccountBase> {
   children: ReactNode;
-  mutation: MutationBase<LoginInput, Account>;
+  mutation: MutationBase<LoginInput, { account: Account; token: string }>;
 }
 
 export const LoginAccountProvider = <Account extends AccountBase>({

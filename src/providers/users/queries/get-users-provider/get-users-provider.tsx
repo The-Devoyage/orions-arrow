@@ -24,6 +24,7 @@ export const GetUsersProvider: FC<GetUsersProviderProps> = ({
 }) => {
   const { data, loading, fetchMore, refetch } = useQuery(query.documentNode, {
     variables: query.variables,
+    notifyOnNetworkStatusChange: true,
   });
 
   const users: User[] = data?.getUsers.data ?? [];
