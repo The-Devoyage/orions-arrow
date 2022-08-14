@@ -3,14 +3,14 @@ import { createContext } from "react";
 import { AccountBase } from "../../../types";
 import { ResetPasswordInput } from "../../../types/generated";
 
-export interface IResetPasswordProviderContext<Account extends AccountBase> {
+export interface IResetPasswordContext<Account extends AccountBase> {
   form: FormikProps<ResetPasswordInput> | null;
   loading: boolean;
   account: Account | null;
 }
 
-export const ResetPasswordProviderContext = createContext<
-  IResetPasswordProviderContext<AccountBase>
+export const ResetPasswordContext = createContext<
+  IResetPasswordContext<AccountBase>
 >({
   form: null,
   loading: false,

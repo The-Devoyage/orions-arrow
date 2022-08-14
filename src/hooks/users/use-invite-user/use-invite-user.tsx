@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Context } from "../../..";
 import { UserBase } from "../../../types";
 
-export const useInviteUserContext = <User extends UserBase>() => {
+export const useInviteUser = <User extends UserBase>() => {
   const context = useContext<Context.Users.IInviteUserContext<User>>(
     (Context.Users.InviteUserContext as unknown) as React.Context<
       Context.Users.IInviteUserContext<User>

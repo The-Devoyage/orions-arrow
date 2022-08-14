@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { AccountBase } from "../../../types";
 import { Context } from "../../..";
 
-export const useGetAccountsContext = <A extends AccountBase>() => {
+export const useGetAccounts = <A extends AccountBase>() => {
   const context = useContext<Context.Accounts.IGetAccountsContext<A>>(
     (Context.Accounts.GetAccountsContext as unknown) as React.Context<
       Context.Accounts.IGetAccountsContext<A>

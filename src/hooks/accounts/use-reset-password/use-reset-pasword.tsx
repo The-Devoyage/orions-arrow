@@ -2,14 +2,10 @@ import { useContext } from "react";
 import { AccountBase } from "../../../types";
 import { Context } from "../../../";
 
-export const useResetAccountPasswordContext = <
-  Account extends AccountBase
->() => {
-  const context = useContext<
-    Context.Accounts.IResetPasswordProviderContext<Account>
-  >(
-    (Context.Accounts.ResetPasswordProviderContext as unknown) as React.Context<
-      Context.Accounts.IResetPasswordProviderContext<Account>
+export const useResetAccountPassword = <Account extends AccountBase>() => {
+  const context = useContext<Context.Accounts.IResetPasswordContext<Account>>(
+    (Context.Accounts.ResetPasswordContext as unknown) as React.Context<
+      Context.Accounts.IResetPasswordContext<Account>
     >
   );
 

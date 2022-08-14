@@ -56,8 +56,8 @@ export const RegisterAccontProvider = <Account extends AccountBase>({
   );
 
   return (
-    <Context.Accounts.RegisterAccountProviderContext.Provider value={value}>
+    <Context.Accounts.RegisterAccountContext.Provider value={value}>
       {children}
-    </Context.Accounts.RegisterAccountProviderContext.Provider>
+    </Context.Accounts.RegisterAccountContext.Provider>
   );
 };

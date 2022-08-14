@@ -2,15 +2,12 @@ import { useContext } from "react";
 import { Context } from "../../..";
 import { AccountBase } from "../../../types";
 
-export const useResetActivationCodeContext = <
-  Account extends AccountBase
->() => {
+export const useResetActivationCode = <Account extends AccountBase>() => {
   const context = useContext<
-    Context.Accounts.IResetActivationCodeProviderContext<Account>
+    Context.Accounts.IResetActivationCodeContext<Account>
   >(
-    (Context.Accounts
-      .ResetActivationCodeProviderContext as unknown) as React.Context<
-      Context.Accounts.IResetActivationCodeProviderContext<Account>
+    (Context.Accounts.ResetActivationCodeContext as unknown) as React.Context<
+      Context.Accounts.IResetActivationCodeContext<Account>
     >
   );
 

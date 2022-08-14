@@ -3,16 +3,14 @@ import { createContext } from "react";
 import { AccountBase } from "../../../types";
 import { ResetCodeInput } from "../../../types/generated";
 
-export interface IResetActivationCodeProviderContext<
-  Account extends AccountBase
-> {
+export interface IResetActivationCodeContext<Account extends AccountBase> {
   form: FormikProps<ResetCodeInput> | null;
   loading: boolean;
   account: Account | null;
 }
 
-export const ResetActivationCodeProviderContext = createContext<
-  IResetActivationCodeProviderContext<AccountBase>
+export const ResetActivationCodeContext = createContext<
+  IResetActivationCodeContext<AccountBase>
 >({
   form: null,
   loading: false,

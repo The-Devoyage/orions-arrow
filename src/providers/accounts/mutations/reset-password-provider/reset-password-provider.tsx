@@ -53,8 +53,8 @@ export const ResetPasswordProvider = <Account extends AccountBase>({
   ]);
 
   return (
-    <Context.Accounts.ResetPasswordProviderContext.Provider value={value}>
+    <Context.Accounts.ResetPasswordContext.Provider value={value}>
       {children}
-    </Context.Accounts.ResetPasswordProviderContext.Provider>
+    </Context.Accounts.ResetPasswordContext.Provider>
   );
 };

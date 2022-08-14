@@ -2,12 +2,10 @@ import { useContext } from "react";
 import { Context } from "../../../";
 import { AccountBase } from "../../../types";
 
-export const useVerifyAccountEmailContext = <Account extends AccountBase>() => {
-  const context = useContext<
-    Context.Accounts.IVerifyEmailProviderContext<Account>
-  >(
-    (Context.Accounts.VerifyEmailProviderContext as unknown) as React.Context<
-      Context.Accounts.IVerifyEmailProviderContext<Account>
+export const useVerifyAccountEmail = <Account extends AccountBase>() => {
+  const context = useContext<Context.Accounts.IVerifyEmailContext<Account>>(
+    (Context.Accounts.VerifyEmailContext as unknown) as React.Context<
+      Context.Accounts.IVerifyEmailContext<Account>
     >
   );
 

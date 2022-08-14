@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Context } from "../../..";
 
-export const useDeleteUserContext = () => {
+export const useDeleteUser = () => {
   const context = useContext<Context.Users.IDeleteUserContext>(
     (Context.Users
       .DeleteUserContext as unknown) as React.Context<Context.Users.IDeleteUserContext>

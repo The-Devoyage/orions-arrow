@@ -50,8 +50,8 @@ export const ResetActivationCodeProvider = <Account extends AccountBase>({
   ]);
 
   return (
-    <Context.Accounts.ResetActivationCodeProviderContext.Provider value={value}>
+    <Context.Accounts.ResetActivationCodeContext.Provider value={value}>
       {children}
-    </Context.Accounts.ResetActivationCodeProviderContext.Provider>
+    </Context.Accounts.ResetActivationCodeContext.Provider>
   );
 };

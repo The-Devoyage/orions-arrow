@@ -3,14 +3,14 @@ import { AccountBase } from "../../../types";
 import { RegisterInput } from "../../../types/generated";
 import { createContext } from "react";
 
-export interface IRegisterAccountProviderContext<Account extends AccountBase> {
+export interface IRegisterAccountContext<Account extends AccountBase> {
   form: FormikProps<RegisterInput> | null;
   loading: boolean;
   account: Account | null;
 }
 
-export const RegisterAccountProviderContext = createContext<
-  IRegisterAccountProviderContext<AccountBase>
+export const RegisterAccountContext = createContext<
+  IRegisterAccountContext<AccountBase>
 >({
   form: null,
   loading: false,

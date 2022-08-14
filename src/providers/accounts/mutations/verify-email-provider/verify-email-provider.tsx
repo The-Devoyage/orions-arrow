@@ -52,8 +52,8 @@ export const VerifyEmailProvider = <Account extends AccountBase>({
   ]);
 
   return (
-    <Context.Accounts.VerifyEmailProviderContext.Provider value={value}>
+    <Context.Accounts.VerifyEmailContext.Provider value={value}>
       {children}
-    </Context.Accounts.VerifyEmailProviderContext.Provider>
+    </Context.Accounts.VerifyEmailContext.Provider>
   );
 };
