@@ -1,0 +1,13 @@
+schema: http://localhost:5000/graphql
+generates:
+  ./src/types/generated/index.ts:
+    plugins:
+      - typescript
+    config:
+      scalars:
+        DateTime: Date
+        ObjectID: string
+        EmailAddress: string
+        PhoneNumber: string
+        CountryCode: string
+        PostalCode: string
