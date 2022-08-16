@@ -23,7 +23,7 @@ export interface MutationBase<
 > {
   documentNode: DocumentNode;
   variables?: T;
-  refetchQueries?: { query: DocumentNode }[];
+  refetchQueries?: string[];
   onCompleted: (
     data: ReturnType,
     helpers: FormikHelpers<T>,

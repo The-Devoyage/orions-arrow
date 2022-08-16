@@ -1,11 +1,11 @@
-import React, { useMemo } from "react";
+import React, { ReactNode, useMemo } from "react";
 import { MutationBase, UserBase } from "../../../../types";
 import { useMutation } from "@apollo/client";
 import { FormikHelpers, useFormik } from "formik";
 import { Context } from "../../../../";
 
 interface LoginUserProviderProps<User extends UserBase> {
-  children: JSX.Element;
+  children: ReactNode;
   mutation: MutationBase<{}, { user: User; token: string }>;
 }
 

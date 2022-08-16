@@ -1,13 +1,13 @@
 import { useMutation } from "@apollo/client";
 import { FormikHelpers, useFormik } from "formik";
-import React, { FC, useMemo } from "react";
+import React, { FC, ReactNode, useMemo } from "react";
 import { MutationBase } from "../../../../types";
 import { DeleteResponse, DeleteUsersInput } from "../../../../types/generated";
 import { Context } from "../../../../";
 
 export interface DeleteUserProviderProps {
   mutation: MutationBase<DeleteUsersInput, DeleteResponse>;
-  children: JSX.Element;
+  children: ReactNode;
 }
 
 export const DeleteUserProvider: FC<DeleteUserProviderProps> = ({
