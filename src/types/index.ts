@@ -1,6 +1,7 @@
 import { FormikHelpers } from "formik";
 import { Account, User, Media } from "./generated";
 import { DocumentNode, ApolloError } from "@apollo/client";
+import { AnySchema } from "yup";
 
 export type AccountBase = DeepPartial<Account>;
 export type UserBase = DeepPartial<User>;
@@ -35,3 +36,7 @@ export interface MutationBase<
     reset: () => void
   ) => void;
 }
+
+export type Shape<Fields extends Record<string, unknown>> = {
+  [Key in keyof Fields]: AnySchema;
+};

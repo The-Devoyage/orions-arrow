@@ -1,5 +1,5 @@
-import { Account } from "../../types/generated";
-import { Utils } from "../..";
+import { Utils } from "../../..";
+import { Account } from "../../../types/generated";
 
 export const getAccount = (account_id: Account["_id"], accounts: Account[]) =>
   accounts.find((a) => Utils.Common.getProperty(a, "_id") === account_id) ??

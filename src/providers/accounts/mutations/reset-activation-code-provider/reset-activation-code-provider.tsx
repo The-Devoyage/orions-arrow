@@ -3,7 +3,7 @@ import React, { useMemo, ReactNode } from "react";
 import { ResetCodeInput } from "../../../../types/generated";
 import { useMutation } from "@apollo/client";
 import { AccountBase, MutationBase } from "../../../../types";
-import { Context } from "../../../..";
+import { Context, Utils } from "../../../..";
 
 interface ResetActivationCodeProviderProps<Account extends AccountBase> {
   children: ReactNode;
@@ -41,6 +41,9 @@ export const ResetActivationCodeProvider = <Account extends AccountBase>({
     },
     onSubmit: handleRegisterAccount,
     enableReinitialize: true,
+    validationSchema: Utils.Validations.Accounts.ResetCodeInput,
+    validateOnBlur: false,
+    validateOnChange: false,
   });
 
   const value = useMemo(() => ({ form, loading, account }), [

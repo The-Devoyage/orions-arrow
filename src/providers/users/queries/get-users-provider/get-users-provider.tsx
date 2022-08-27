@@ -32,7 +32,7 @@ export const GetUsersProvider: FC<GetUsersProviderProps> = ({
 
   const value = useMemo(() => {
     const getUser = (user_id: User["_id"]) =>
-      users.find((u) => Utils.Common.getProperty(u, "_id") === user_id) ?? null;
+      Utils.Helpers.Users.getUser(user_id, users);
 
     const handleFetchMore = () => {
       fetchMore({

@@ -33,13 +33,13 @@ export const GetAccountsProvider: FC<GetAccountsProviderProps> = ({
     const stats = data?.getAccounts.stats;
 
     const getAccount = (account_id: Account["_id"]) =>
-      Utils.Accounts.getAccount(account_id, accounts);
+      Utils.Helpers.Accounts.getAccount(account_id, accounts);
 
     const getAccountUsers = (account_id: Account["_id"]) =>
-      Utils.Accounts.getAccountUsers(account_id, accounts);
+      Utils.Helpers.Accounts.getAccountUsers(account_id, accounts);
 
     const getDefaultUser = (account_id: Account["_id"]) =>
-      Utils.Accounts.getDefaultUser(account_id, accounts);
+      Utils.Helpers.Accounts.getDefaultUser(account_id, accounts);
 
     const handleFetchMore = () =>
       fetchMore({

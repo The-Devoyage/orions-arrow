@@ -3,7 +3,7 @@ import React, { useMemo, ReactNode } from "react";
 import { LoginInput } from "../../../../types/generated";
 import { AccountBase, MutationBase } from "../../../../types";
 import { useMutation } from "@apollo/client";
-import { Context } from "../../../..";
+import { Context, Utils } from "../../../..";
 
 interface LoginAccountProviderProps<Account extends AccountBase> {
   children: ReactNode;
@@ -44,6 +44,7 @@ export const LoginAccountProvider = <Account extends AccountBase>({
   const form = useFormik<LoginInput>({
     initialValues: mutation.variables ?? { email: "", password: "" },
     onSubmit: (values, helpers) => handleLoginAccount(values, helpers),
+    validationSchema: Utils.Validations.Accounts.LoginInput,
   });
 
   const value = useMemo(() => ({ form, loading, account, token }), [

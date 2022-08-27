@@ -3,7 +3,7 @@ import { FormikHelpers, useFormik } from "formik";
 import React, { FC, ReactNode, useMemo } from "react";
 import { MutationBase } from "../../../../types";
 import { DeleteMediaInput, DeleteResponse } from "../../../../types/generated";
-import { Context } from "../../../../";
+import { Context, Utils } from "../../../../";
 
 interface DeleteMediaProviderProps {
   mutation: MutationBase<DeleteMediaInput, DeleteResponse>;
@@ -35,6 +35,7 @@ export const DeleteMediaProvider: FC<DeleteMediaProviderProps> = ({
     initialValues: mutation.variables ?? { query: {} },
     enableReinitialize: true,
     onSubmit: handleDeleteMeida,
+    validationSchema: Utils.Validations.Media.DeleteMediaInput,
   });
 
   const value = useMemo(

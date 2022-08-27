@@ -3,7 +3,7 @@ import { FormikHelpers, useFormik } from "formik";
 import { CreateUserInput } from "../../../../types/generated";
 import { useMutation } from "@apollo/client";
 import { MutationBase, UserBase } from "../../../../types";
-import { Context } from "../../../..";
+import { Context, Utils } from "../../../..";
 
 interface CreateUserProviderProps<User extends UserBase> {
   children: ReactNode;
@@ -44,6 +44,7 @@ export const CreateUserProvider = <User extends UserBase>({
     initialValues: mutation.variables ?? { payload: {} },
     onSubmit: handleCreateUser,
     enableReinitialize: true,
+    validationSchema: Utils.Validations.Users.CreateUserInput,
   });
 
   const value = useMemo(

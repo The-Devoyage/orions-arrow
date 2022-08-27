@@ -3,7 +3,7 @@ import React, { useMemo, ReactNode } from "react";
 import { ResetPasswordInput } from "../../../../types/generated";
 import { useMutation } from "@apollo/client";
 import { AccountBase, MutationBase } from "../../../../types";
-import { Context } from "../../../..";
+import { Context, Utils } from "../../../..";
 
 interface ResetPasswordProviderProps<Account extends AccountBase> {
   children: ReactNode;
@@ -44,6 +44,9 @@ export const ResetPasswordProvider = <Account extends AccountBase>({
       code: "",
     },
     onSubmit: handleResetPassword,
+    validationSchema: Utils.Validations.Accounts.ResetPasswordInput,
+    validateOnChange: false,
+    validateOnBlur: false,
   });
 
   const value = useMemo(() => ({ form, loading, account }), [

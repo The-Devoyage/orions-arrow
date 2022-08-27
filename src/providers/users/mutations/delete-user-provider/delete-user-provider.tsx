@@ -3,7 +3,7 @@ import { FormikHelpers, useFormik } from "formik";
 import React, { FC, ReactNode, useMemo } from "react";
 import { MutationBase } from "../../../../types";
 import { DeleteResponse, DeleteUsersInput } from "../../../../types/generated";
-import { Context } from "../../../../";
+import { Context, Utils } from "../../../../";
 
 export interface DeleteUserProviderProps {
   mutation: MutationBase<DeleteUsersInput, DeleteResponse>;
@@ -38,6 +38,7 @@ export const DeleteUserProvider: FC<DeleteUserProviderProps> = ({
   const form = useFormik({
     initialValues: mutation.variables ?? { query: {} },
     onSubmit: handleDeleteUserProvider,
+    validationSchema: Utils.Validations.Users.DeleteUserInput,
   });
 
   const value = useMemo(() => ({ form, loading, deleted }), [

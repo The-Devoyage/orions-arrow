@@ -3,7 +3,7 @@ import React, { useMemo, ReactNode } from "react";
 import { VerifyEmailInput } from "../../../../types/generated";
 import { useMutation } from "@apollo/client";
 import { AccountBase, MutationBase } from "../../../../types";
-import { Context } from "../../../../";
+import { Context, Utils } from "../../../../";
 
 interface VerifyEmailProviderProps<Account extends AccountBase> {
   children: ReactNode;
@@ -43,6 +43,9 @@ export const VerifyEmailProvider = <Account extends AccountBase>({
       code: "",
     },
     onSubmit: handleVerifyEmail,
+    validationSchema: Utils.Validations.Accounts.VerifyEmailInput,
+    validateOnBlur: false,
+    validateOnChange: false,
   });
 
   const value = useMemo(() => ({ form, loading, account }), [

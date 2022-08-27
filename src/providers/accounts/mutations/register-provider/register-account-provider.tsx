@@ -3,7 +3,7 @@ import React, { useMemo, ReactNode } from "react";
 import { RegisterInput } from "../../../../types/generated";
 import { useMutation } from "@apollo/client";
 import { AccountBase, MutationBase } from "../../../../types";
-import { Context } from "../../../../";
+import { Context, Utils } from "../../../../";
 
 interface RegisterAccountProviderProps<Account extends AccountBase> {
   children: ReactNode;
@@ -44,6 +44,9 @@ export const RegisterAccontProvider = <Account extends AccountBase>({
     },
     enableReinitialize: true,
     onSubmit: handleRegisterAccount,
+    validateOnChange: false,
+    validateOnBlur: false,
+    validationSchema: Utils.Validations.Accounts.RegisterInput,
   });
 
   const value = useMemo(

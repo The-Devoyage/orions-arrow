@@ -6,7 +6,7 @@ import { Context } from "../../../../";
 
 interface LoginUserProviderProps<User extends UserBase> {
   children: ReactNode;
-  mutation: MutationBase<{}, { user: User; token: string }>;
+  mutation: MutationBase<Record<string, never>, { user: User; token: string }>;
 }
 
 export const LoginUserProvider = <User extends UserBase>({
@@ -22,7 +22,10 @@ export const LoginUserProvider = <User extends UserBase>({
   const user = data?.loginUser.user ?? null;
   const token = data?.loginUser.token ?? null;
 
-  const handleLoginUser = (_: {}, helpers: FormikHelpers<{}>) => {
+  const handleLoginUser = (
+    _: Record<string, never>,
+    helpers: FormikHelpers<Record<string, never>>
+  ) => {
     loginUser({
       onCompleted: (data) =>
         mutation.onCompleted(data?.loginUser, helpers, reset),
@@ -30,7 +33,7 @@ export const LoginUserProvider = <User extends UserBase>({
     });
   };
 
-  const form = useFormik<{}>({
+  const form = useFormik<Record<string, never>>({
     initialValues: {},
     onSubmit: handleLoginUser,
     enableReinitialize: true,
