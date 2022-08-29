@@ -1,5 +1,4 @@
 import * as Yup from "yup";
-import { Utils } from "../../..";
 import { Shape } from "../../../types";
 import {
   CreateMediaInput as ICreateMediaInput,
@@ -7,6 +6,7 @@ import {
   MediaFieldFiltersInput,
   MediaPayloadInput as IMediaPayloadInput,
 } from "../../../types/generated";
+import { StringFieldFilter } from "../common";
 
 export const MediaPayloadInput = Yup.object().shape<Shape<IMediaPayloadInput>>({
   file: Yup.mixed().required("Please choose at least one file."),
@@ -21,12 +21,12 @@ export const CreateMediaInput = Yup.object().shape<Shape<ICreateMediaInput>>({
 
 export const DeleteMediaInput = Yup.object().shape<Shape<IDeleteMediaInput>>({
   query: Yup.object().shape<Shape<MediaFieldFiltersInput>>({
-    _id: Yup.array().of(Utils.Validations.Common.StringFieldFilter),
-    created_by: Yup.array().of(Utils.Validations.Common.StringFieldFilter),
-    createdAt: Yup.array().of(Utils.Validations.Common.StringFieldFilter),
-    mimetype: Yup.array().of(Utils.Validations.Common.StringFieldFilter),
-    path: Yup.array().of(Utils.Validations.Common.StringFieldFilter),
-    title: Yup.array().of(Utils.Validations.Common.StringFieldFilter),
-    updatedAt: Yup.array().of(Utils.Validations.Common.StringFieldFilter),
+    _id: Yup.array().of(StringFieldFilter),
+    created_by: Yup.array().of(StringFieldFilter),
+    createdAt: Yup.array().of(StringFieldFilter),
+    mimetype: Yup.array().of(StringFieldFilter),
+    path: Yup.array().of(StringFieldFilter),
+    title: Yup.array().of(StringFieldFilter),
+    updatedAt: Yup.array().of(StringFieldFilter),
   }),
 });
