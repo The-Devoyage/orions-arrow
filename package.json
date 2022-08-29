@@ -1,6 +1,6 @@
 {
   "name": "@the-devoyage/orions-arrow",
-  "version": "0.0.1-beta",
+  "version": "0.0.2-beta",
   "description": "SDK For Devoyage APIs",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

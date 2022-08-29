@@ -1,5 +1,4 @@
 import * as Yup from "yup";
-import { Utils } from "../../..";
 import { Shape } from "../../../types";
 import {
   AddressInput as IAddressInput,
@@ -13,28 +12,29 @@ import {
   UserFieldFiltersInput as IUserFieldFiltersInput,
   UserInput as IUserInput,
 } from "../../../types/generated";
+import { DateFieldFilter, StringFieldFilter } from "../common";
 
 export const UserFieldFiltersInput = Yup.object().shape<
   Shape<IUserFieldFiltersInput>
 >({
-  _id: Yup.array().of(Utils.Validations.Common.StringFieldFilter),
-  created_by: Yup.array().of(Utils.Validations.Common.StringFieldFilter),
-  createdAt: Yup.array().of(Utils.Validations.Common.DateFieldFilter),
-  email: Yup.array().of(Utils.Validations.Common.StringFieldFilter),
-  first_name: Yup.array().of(Utils.Validations.Common.StringFieldFilter),
-  image: Yup.array().of(Utils.Validations.Common.StringFieldFilter),
-  last_name: Yup.array().of(Utils.Validations.Common.StringFieldFilter),
-  phone: Yup.array().of(Utils.Validations.Common.StringFieldFilter),
-  updatedAt: Yup.array().of(Utils.Validations.Common.DateFieldFilter),
+  _id: Yup.array().of(StringFieldFilter),
+  created_by: Yup.array().of(StringFieldFilter),
+  createdAt: Yup.array().of(DateFieldFilter),
+  email: Yup.array().of(StringFieldFilter),
+  first_name: Yup.array().of(StringFieldFilter),
+  image: Yup.array().of(StringFieldFilter),
+  last_name: Yup.array().of(StringFieldFilter),
+  phone: Yup.array().of(StringFieldFilter),
+  updatedAt: Yup.array().of(DateFieldFilter),
   memberships: Yup.array().of(
     Yup.object().shape<Shape<GetUserByMembershipFilterInput>>({
-      _id: Utils.Validations.Common.StringFieldFilter,
-      account: Utils.Validations.Common.StringFieldFilter,
-      createdAt: Utils.Validations.Common.StringFieldFilter,
-      default: Utils.Validations.Common.StringFieldFilter,
-      role: Utils.Validations.Common.StringFieldFilter,
-      status: Utils.Validations.Common.StringFieldFilter,
-      updatedAt: Utils.Validations.Common.DateFieldFilter,
+      _id: StringFieldFilter,
+      account: StringFieldFilter,
+      createdAt: StringFieldFilter,
+      default: StringFieldFilter,
+      role: StringFieldFilter,
+      status: StringFieldFilter,
+      updatedAt: DateFieldFilter,
     })
   ),
 });
