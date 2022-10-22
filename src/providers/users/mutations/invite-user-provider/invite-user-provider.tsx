@@ -47,6 +47,8 @@ export const InviteUserProvider = <User extends UserBase>({
     initialValues: mutation.variables ?? { query: {}, payload: {} },
     enableReinitialize: true,
     validationSchema: Utils.Validations.Users.InviteUserInput,
+    validateOnBlur: false,
+    validateOnChange: false,
   });
 
   const value = useMemo(

@@ -12,7 +12,7 @@ import {
   UserFieldFiltersInput as IUserFieldFiltersInput,
   UserInput as IUserInput,
 } from "../../../types/generated";
-import { DateFieldFilter, StringFieldFilter } from "../common";
+import { DateFieldFilter, PhoneRegex, StringFieldFilter } from "../common";
 
 export const UserFieldFiltersInput = Yup.object().shape<
   Shape<IUserFieldFiltersInput>
@@ -53,13 +53,13 @@ export const AddressInput = Yup.object().shape<Shape<IAddressInput>>(
         state: string,
         zip: string
       ) => lineTwo || city || country || state || zip,
-      then: Yup.string().required("Please enter address."),
+      then: Yup.string().required("Please enter address.").nullable(),
       otherwise: Yup.string()
         .min(3, "Please provide more.")
         .optional()
         .nullable(),
     }),
-    lineTwo: Yup.string(),
+    lineTwo: Yup.string().nullable(),
     city: Yup.string().when(["lineOne", "lineTwo", "country", "state", "zip"], {
       is: (
         lineTwo: string,
@@ -70,7 +70,8 @@ export const AddressInput = Yup.object().shape<Shape<IAddressInput>>(
       ) => lineTwo || lineOne || country || state || zip,
       then: Yup.string()
         .min(3, "Please prvovide more.")
-        .required("Please select city."),
+        .required("Please select city.")
+        .nullable(),
       otherwise: Yup.string().optional().nullable(),
     }),
     country: Yup.string().when(["lineOne", "lineTwo", "city", "state", "zip"], {
@@ -81,18 +82,12 @@ export const AddressInput = Yup.object().shape<Shape<IAddressInput>>(
         state: string,
         zip: string
       ) => lineTwo || lineOne || city || state || zip,
-      then: Yup.string().required("Please select country."),
+      then: Yup.string().required("Please select country.").nullable(),
       otherwise: Yup.string().optional().nullable(),
     }),
-    state: Yup.string().when(["lineOne", "lineTwo", "city", "country", "zip"], {
-      is: (
-        lineTwo: string,
-        lineOne: string,
-        city: string,
-        country: string,
-        zip: string
-      ) => lineTwo || lineOne || city || country || zip,
-      then: Yup.string().required("Please select state."),
+    state: Yup.string().when(["country"], {
+      is: (country: string) => country === "US",
+      then: Yup.string().required("Please select state.").nullable(),
       otherwise: Yup.string().optional().nullable(),
     }),
     zip: Yup.string().when(["lineOne", "lineTwo", "city", "country", "state"], {
@@ -121,7 +116,7 @@ export const AddressInput = Yup.object().shape<Shape<IAddressInput>>(
     ["lineOne", "zip"],
     ["lineTwo", "zip"],
     ["city", "zip"],
-    ["state", "zip"],
+    ["state", "country"],
     ["country", "zip"],
   ]
 );
@@ -132,30 +127,27 @@ export const MembershipInput = Yup.object().shape<Shape<IMembershipInput>>({
   role: Yup.string().optional(),
   status: Yup.string().optional(),
   local: Yup.object().shape<Shape<LocalMembershipInput>>({
-    image: Yup.string().optional(),
-    address: AddressInput,
-    phone: Yup.string().optional(),
-    last_name: Yup.string().optional(),
+    image: Yup.string().optional().nullable(),
+    address: AddressInput.nullable(),
+    phone: PhoneRegex.optional().nullable(),
+    last_name: Yup.string().optional().nullable(),
     first_name: Yup.string().optional(),
-    about: Yup.string().min(10, "Please write a bit more.").optional(),
+    about: Yup.string()
+      .min(10, "Please write a bit more.")
+      .optional()
+      .nullable(),
   }),
 });
 
 export const UserInput = Yup.object().shape<Shape<IUserInput>>({
-  email: Yup.string()
-    .email("Please provide a valid email.")
-    .required("Email field is required."),
-  about: Yup.string().optional(),
-  first_name: Yup.string()
-    .min(3, "Please provide at least 3 characters.")
-    .optional(),
-  last_name: Yup.string()
-    .min(3, "Please provide at least 3 characters.")
-    .optional(),
-  phone: Yup.string().optional(),
-  address: AddressInput,
+  email: Yup.string().email("Please provide a valid email.").optional(),
+  about: Yup.string().optional().nullable(),
+  first_name: Yup.string().optional().nullable(),
+  last_name: Yup.string().optional().nullable(),
+  phone: PhoneRegex.optional().nullable(),
+  address: AddressInput.nullable(),
   image: Yup.string().optional(),
-  memberships: MembershipInput.optional().nullable(),
+  memberships: MembershipInput.notRequired().default(undefined),
 });
 
 export const CreateUserInput = Yup.object().shape<Shape<ICreateUserInput>>({

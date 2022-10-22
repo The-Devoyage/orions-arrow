@@ -15,7 +15,7 @@ export const DeleteMediaProvider: FC<DeleteMediaProviderProps> = ({
   mutation,
 }) => {
   const [deleteMedia, { loading, reset }] = useMutation(mutation.documentNode, {
-    refetchQueries: ["MediasPage_GetMedia"],
+    refetchQueries: mutation.refetchQueries,
   });
 
   const handleDeleteMeida = (
@@ -26,6 +26,7 @@ export const DeleteMediaProvider: FC<DeleteMediaProviderProps> = ({
       variables: {
         deleteMediaInput: values,
       },
+      refetchQueries: mutation.refetchQueries,
       onError: (error) => mutation.onError(error, helpers, reset),
       onCompleted: (data) => mutation.onCompleted(data, helpers, reset),
     });

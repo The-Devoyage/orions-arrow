@@ -43,6 +43,8 @@ export const UpdateUserProvider = <User extends UserBase>({
     initialValues: mutation.variables ?? { query: {}, payload: {} },
     enableReinitialize: true,
     validationSchema: Utils.Validations.Users.UpdateUserInput,
+    validateOnBlur: false,
+    validateOnChange: false,
   });
 
   const value = useMemo(() => {

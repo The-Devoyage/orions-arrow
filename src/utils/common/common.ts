@@ -1,4 +1,7 @@
-export const getProperty = <T extends {}, K extends keyof T>(
+export const getProperty = <
+  T extends Record<string, unknown>,
+  K extends keyof T
+>(
   obj: T | null | undefined,
   property: K
 ) => {
@@ -20,12 +23,6 @@ export const isValidObjectId = (v?: string) => {
   return false;
 };
 
-/**
- *
- * Removes properties from an object that are undefined, null, or empty strings
- * Returns new object, does not mutate original.
- *
- **/
 export const removeUnusedProperties = <T extends Record<string, unknown>>(
   obj: Record<string, unknown>
 ): T => {
@@ -34,15 +31,20 @@ export const removeUnusedProperties = <T extends Record<string, unknown>>(
 
   for (const key of objKeys) {
     if (obj[key] === undefined || obj[key] === "" || obj[key] === null) {
-      continue;
+      delete obj[key];
+      delete filteredObj[key];
     } else if (typeof obj[key] === "object" && !Array.isArray(obj[key])) {
-      const filteredNested = removeUnusedProperties(obj[key] as {});
+      const filteredNested = removeUnusedProperties(
+        obj[key] as Record<string, unknown>
+      );
       filteredObj[key] = { ...filteredNested };
     } else if (typeof obj[key] === "object" && Array.isArray(obj[key])) {
       const array = [];
       for (const o of obj[key] as []) {
         if (typeof o === "object" && !Array.isArray(o)) {
-          array.push(removeUnusedProperties({ ...(o as {}) }));
+          array.push(
+            removeUnusedProperties({ ...(o as Record<string, unknown>) })
+          );
         }
       }
       filteredObj[key] = array;

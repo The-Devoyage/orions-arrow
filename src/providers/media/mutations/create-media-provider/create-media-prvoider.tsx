@@ -3,7 +3,7 @@ import { FormikHelpers, useFormik } from "formik";
 import React, { ReactNode, useMemo } from "react";
 import { MediaBase, MutationBase } from "../../../../types";
 import { CreateMediaInput } from "../../../../types/generated";
-import { Context } from "../../../../";
+import { Context, Utils } from "../../../../";
 
 interface CreateMediaProviderProps<Media extends MediaBase> {
   mutation: MutationBase<CreateMediaInput, Media>;
@@ -32,7 +32,7 @@ export const CreateMediaProvider = <Media extends MediaBase>({
           ...values,
         },
       },
-      refetchQueries: ["MediasPage_GetMedia"],
+      refetchQueries: mutation.refetchQueries,
       onCompleted: (data) =>
         mutation.onCompleted(data?.createMedia.data, helpers, reset),
       onError: (error) => mutation.onError(error, helpers, reset),
@@ -43,8 +43,7 @@ export const CreateMediaProvider = <Media extends MediaBase>({
     initialValues: mutation.variables ?? { payload: [] },
     enableReinitialize: true,
     onSubmit: handleCreateMedia,
-    //TODO: Re-enable validation.
-    // validationSchema: Utils.Validations.Media.MediaPayloadInput,
+    validationSchema: Utils.Validations.Media.CreateMediaInput,
     // validateOnBlur: false,
     // validateOnChange: false,
   });

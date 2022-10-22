@@ -19,9 +19,7 @@ export const RegisterInput = Yup.object().shape<Shape<IRegisterInput>>({
   email: Yup.string()
     .email("Please enter a valid email.")
     .required("Email is required."),
-  password: Yup.string()
-    .min(8, "Must be at least 8 characters.")
-    .required("Password is required."),
+  password: Yup.string().min(8, "Must be at least 8 characters.").optional(),
 });
 
 export const ResetCodeInput = Yup.object().shape<Shape<IResetCodeInput>>({
